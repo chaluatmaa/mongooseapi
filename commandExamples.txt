@@ -1,0 +1,145 @@
+OBJECT ID 
+
+// const id = new ObjectId();
+// console.log(id);
+// console.log(id.getTimestamp().toLocaleString());
+
+
+INSERT ONE AND INSERT MANY
+
+db.collection("users").insertOne(
+		// 	{
+		// 		_id: id,
+		// 		name: "Vikram",
+		// 		age: 28,
+		// 	},
+		// 	(err, result) => {
+		// 		if (err) {
+		// 			return console.log("Data insertion error");
+		// 		}
+		// 		console.log(result);
+		// 	}
+		// );
+		// db.collection("tasks").insertMany(
+		// 	[
+		// 		{
+		// 			desc: "John",
+		// 			completed: true,
+		// 		},
+		// 		{
+		// 			desc: "Jane",
+		// 			completed: true,
+		// 		},
+		// 		{
+		// 			desc: "Johnny",
+		// 			completed: false,
+		// 		},
+		// 	],
+		// 	(err, client) => {
+		// 		if (err) {
+		// 			console.log("Something is wrong");
+		// 		}
+		// 		console.log(client.insertedIds);
+		// 	}
+		// );
+
+
+		FIND ONE AND FIND MANY
+
+		// db.collection("users").findOne(
+		// 	{
+		// 		name: "John",
+		// 	},
+		// 	(err, client) => {
+		// 		if (err) return console.log("Unable to fetch");
+		// 		console.log(client);
+		// 	}
+		// );
+		db.collection("users")
+			.find({ name: "John" })
+			.toArray((err, client) => {
+				if (err) return console.log("AN EROR OCCURED");
+				console.log(client);
+			});
+		db.collection("users")
+			.find({ name: "John" })
+			.count((err, client) => {
+				if (err) return console.log("AN EROR OCCURED");
+				console.log(client);
+			});
+
+
+UPDATE ONE AND UPDATE MANY
+
+		// db.collection("users")
+		// 	.updateOne(
+		// 		{
+		// 			_id: new ObjectId("61191593c60e4403996bdfc4"),
+		// 		},
+		// 		// {
+		// 		// 	$set: {
+		// 		// 		name: "HAHAHA",
+		// 		// 	},
+		// 		// }
+		// 		{
+		// 			$inc: {
+		// 				age: 10,
+		// 			},
+		// 		}
+		// 	)
+		// 	.then((result) => {
+		// 		console.log(result);
+		// 	})
+		// 	.catch((err) => console.log(err));
+
+		db.collection("tasks")
+			.updateMany(
+				{
+					completed: false,
+				},
+				{
+					$set: {
+						completed: true,
+					},
+				}
+			)
+			.then((result) => console.log(result))
+			.catch((err) => console.log(err));
+
+
+DELETE ONE AND DELETE MANY
+
+
+
+
+
+HOW TO MAKE ENTRY IN DATABASE
+
+// const user = new User({
+// 	name: "NEW VALID DATA",
+// 	email: "NEWEMAIL@LOWER.CASE",
+// 	password: "Passwor123",
+// });
+
+// user
+// 	.save()
+// 	.then((result) => {
+// 		console.log(result);
+// 	})
+// 	.catch((err) => {
+// 		console.log(err);
+// 	});
+
+// const task = new Tasks({
+// 	desc: "TRYING TO DO",
+// 	completed: true,
+// });
+
+// task
+// 	.save()
+// 	.then((result) => {
+// 		console.log(result);
+// 	})
+// 	.catch((err) => {
+// 		console.log(err);
+// 	});
