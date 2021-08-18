@@ -6,24 +6,6 @@ const userRouter = require("./routers/user");
 const taskRouter = require("./routers/task");
 const jwt = require("jsonwebtoken");
 
-// app.use((req, res, next) => {
-// 	// console.log(req.method, req.path);
-// 	// next();
-// 	if (req.method === "GET") {
-// 		res.send("GET requests are disabled");
-// 	} else {
-// 		next();
-// 	}
-// });
-
-// ASSIGNMENT
-
-// app.use((req, res, next) => {
-// 	if (req.method) {
-// 		res.send("SITE IS UNDER MAINTAINENCE");
-// 	}
-// });
-
 app.use(express.json());
 
 app.use(userRouter);
@@ -35,7 +17,7 @@ app.use(taskRouter);
 // 	});
 // 	console.log("Token:", token);
 // 	const verified = jwt.verify(token, "seriesofcharacters");
-// 	console.log("Verify:", verified);
+// 	console.log("Verify:", verified._id);
 // };
 
 // myFunction();

@@ -5,24 +5,8 @@ const Tasks = require("../models/task");
 const auth = require("../middleware/auth");
 
 router.get("/users/me", auth, async (req, res) => {
-	// User.findById({ _id: id })
-	// 	.then((result) => {
-	// 		if (!result) {
-	// 			return res.status(404);
-	// 		}
-	// 		console.log(result);
-	// 		res.send(result);
-	// 	})
-	// 	.catch((err) => {
-	// 		console.log(err);
-	// 	});
-	// try {
-	// 	const user = await User.find();
-	// 	if (!user) return res.status(404).send();
-	// 	res.status(200).send(user);
-	// } catch (error) {
-	// 	res.status(500).send();
-	// }
+	console.log(req.user);
+	console.log(req.token);
 	res.send(req.user);
 });
 router.get("/users/:id", async (req, res) => {
@@ -123,7 +107,7 @@ router.post("/users/login", async (req, res) => {
 			req.body.password
 		);
 		const token = await user.generateAuthToken();
-		console.log(user);
+		// console.log(user);
 		res.send({
 			user,
 			token,
@@ -140,8 +124,7 @@ router.post("/users/logout", auth, async (req, res) => {
 			return token.token !== req.token;
 		});
 		await req.user.save();
-		console.log(res.send());
-		res.send();
+		res.send("Logged out");
 	} catch (e) {
 		res.status(500).send();
 	}
